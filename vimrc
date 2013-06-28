@@ -14,6 +14,8 @@ if v:progname =~? "evim"
   finish
 endif
 
+execute pathogen#infect()
+
 set expandtab
 set softtabstop=4
 set tabstop=4
@@ -107,8 +109,6 @@ map <Leader>p :RunPyBuffer<CR>
 
 cmap WW w !sudo tee % > /dev/null
 
-autocmd FileType python set complete+=k~/.vim/syntax/python.vim
-
 " Remap to also look for {}s not in the first column
 :map [[ ?{w99[{
 :map ][ /}b99]}
@@ -123,3 +123,30 @@ else
     colorscheme default
 endif
 
+:nmap \l :setlocal number!<CR>
+:nmap \o :set paste!<CR>
+
+" More familiar movement keys
+:cnoremap <C-a>  <Home>
+:cnoremap <C-b>  <Left>
+:cnoremap <C-f>  <Right>
+:cnoremap <C-d>  <Delete>
+:cnoremap <M-b>  <S-Left>
+:cnoremap <M-f>  <S-Right>
+:cnoremap <M-d>  <S-right><Delete>
+:cnoremap <Esc>b <S-Left>
+:cnoremap <Esc>f <S-Right>
+:cnoremap <Esc>d <S-right><Delete>
+:cnoremap <C-g>  <C-c>
+
+" Smart searching
+:set incsearch
+:set ignorecase
+:set smartcase
+:set hlsearch
+:nmap \q :nohlsearch<CR>
+
+" Hotkeys for switching buffers
+:nmap <C-e> :e#<CR>     " Last open buffer
+:nmap <C-n> :bnext<CR>
+:nmap <C-p> :bprev<CR>
