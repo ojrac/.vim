@@ -10,6 +10,10 @@
 "           for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
+"
+" Note the required backslash.
+let mapleader = "\<space>"
+
 if v:progname =~? "evim"
   finish
 endif
@@ -123,8 +127,8 @@ else
     colorscheme default
 endif
 
-:nmap \l :setlocal number!<CR>
-:nmap \o :set paste!<CR>
+:nmap <Leader>l :setlocal number!<CR>
+:nmap <Leader>o :set paste!<CR>
 
 " More familiar movement keys
 :cnoremap <C-a>  <Home>
@@ -144,9 +148,15 @@ endif
 :set ignorecase
 :set smartcase
 :set hlsearch
-:nmap \q :nohlsearch<CR>
+:nmap <Leader>q :nohlsearch<CR>
+
+:nmap <Leader>e :NERDTreeToggle<CR>
 
 " Hotkeys for switching buffers
 :nmap <C-e> :e#<CR>     " Last open buffer
 :nmap <C-n> :bnext<CR>
 :nmap <C-p> :bprev<CR>
+
+" Ctrl-P
+:nmap <CR> :CtrlPBuffer<CR>
+
