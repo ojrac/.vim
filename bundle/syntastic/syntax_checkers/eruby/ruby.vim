@@ -29,15 +29,17 @@ function! SyntaxCheckers_eruby_ruby_GetLocList()
         let exe = 'RUBYOPT= ' . exe
     endif
 
-    let fname = fnameescape(expand('%'))
+    let fname = "'" . escape(expand('%'), "\\'") . "'"
 
     let enc = &fileencoding != '' ? &fileencoding : &encoding
-    let encoding_string = enc ==# 'utf-8' ? ', :encoding => "UTF-8"' : ''
+    let encoding_string = enc ==? 'utf-8' ? 'UTF-8' : 'BINARY'
 
     "gsub fixes issue #7, rails has it's own eruby syntax
     let makeprg =
         \ exe . ' -rerb -e ' .
-        \ shellescape('puts ERB.new(File.read("' . fname . '"' . encoding_string . ').gsub(''<\%='',''<\%''), nil, ''-'').src') .
+        \ syntastic#util#shescape('puts ERB.new(File.read(' . fname .
+        \     ', :encoding => "' . encoding_string .
+        \     '").gsub(''<\%='',''<\%''), nil, ''-'').src') .
         \ ' \| ' . exe . ' -c'
 
     let errorformat =

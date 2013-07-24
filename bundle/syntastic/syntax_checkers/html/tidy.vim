@@ -74,9 +74,9 @@ endfunction
 
 function s:Args()
     let args = s:TidyEncOptByFenc() .
-        \ ' --new-blocklevel-tags ' . shellescape('main, section, article, aside, hgroup, header, footer, nav, figure, figcaption') .
-        \ ' --new-inline-tags ' . shellescape('video, audio, source, embed, mark, progress, meter, time, ruby, rt, rp, canvas, command, details, datalist') .
-        \ ' --new-empty-tags ' . shellescape('wbr, keygen') .
+        \ ' --new-blocklevel-tags ' . syntastic#util#shescape('main, section, article, aside, hgroup, header, footer, nav, figure, figcaption') .
+        \ ' --new-inline-tags ' . syntastic#util#shescape('video, audio, source, embed, mark, progress, meter, time, ruby, rt, rp, canvas, command, details, datalist') .
+        \ ' --new-empty-tags ' . syntastic#util#shescape('wbr, keygen') .
         \ ' -e'
     return args
 endfunction
@@ -97,7 +97,8 @@ function! SyntaxCheckers_html_tidy_GetLocList()
     let loclist = SyntasticMake({
         \ 'makeprg': makeprg,
         \ 'errorformat': errorformat,
-        \ 'defaults': {'bufnr': bufnr("")} })
+        \ 'defaults': {'bufnr': bufnr("")},
+        \ 'returns': [0, 1, 2] })
 
     " filter out valid HTML5 from the errors
     for n in range(len(loclist))
