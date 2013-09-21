@@ -8,11 +8,11 @@ Most of the stuff here is from http://statico.github.io/vim.html and http://stat
 
 To override your .vimrc path, you can set an environment variable:
 
-    export VIMINIT="so /home/USER/.vim/vimrc"
+    export VIMINIT="so $HOME/.vim/vimrc"
 
 ...or you can make a ~/.vimrc that looks like this:
 
-    :so /home/USER/.vim/vimrc
+    :so $HOME/.vim/vimrc
 
 ...and, if you're stuck on Windows, make sure to put it in vimfiles:
 
