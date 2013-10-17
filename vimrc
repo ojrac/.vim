@@ -153,7 +153,7 @@ endif
 :nmap <Leader>e :NERDTreeToggle<CR>
 
 " Hotkeys for switching buffers
-:nmap <C-e> :e#<CR>     " Last open buffer
+:nmap <C-q> :e#<CR>     " Last open buffer
 :nmap <C-n> :bnext<CR>
 :nmap <C-p> :bprev<CR>
 
