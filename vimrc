@@ -168,7 +168,6 @@ let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 set wildignore=*.swp,*.pyc
 set title
 set nobackup
-set visualbell
 set noerrorbells
 
 " Don't require Shift when pressing :
