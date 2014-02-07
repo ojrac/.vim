@@ -174,7 +174,7 @@ set noerrorbells
 nnoremap ; :
 
 vmap Q gq
-nmap Q gqap
+nmap Q gqq
 
 " Window navigation
 map <C-h> <C-w>h
