@@ -150,7 +150,7 @@ endif
 :set hlsearch
 :nmap <Leader>q :nohlsearch<CR>
 
-:nmap <Leader>e :NERDTreeToggle<CR>
+:nmap <Leader>w :NERDTreeToggle<CR>
 
 " Hotkeys for switching buffers
 :nmap <C-q> :e#<CR>     " Last open buffer
@@ -159,4 +159,25 @@ endif
 
 " Ctrl-P
 :nmap <CR> :CtrlPBuffer<CR>
+:nmap <Leader>e :CtrlP<CR>
 
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+set wildignore=*.swp,*.pyc
+set title
+set nobackup
+set visualbell
+set noerrorbells
+
+" Don't require Shift when pressing :
+nnoremap ; :
+
+vmap Q gq
+nmap Q gqap
+
+" Window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
