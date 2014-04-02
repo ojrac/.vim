@@ -12,6 +12,11 @@
 " When started as "evim", evim.vim will already have done these settings.
 "
 " Note the required backslash.
+
+" Assume we can support 256 colors
+set t_Co=256
+:colorscheme zenburn
+
 let mapleader = "\<space>"
 
 if v:progname =~? "evim"
@@ -113,19 +118,13 @@ map <Leader>p :RunPyBuffer<CR>
 
 cmap WW w !sudo tee % > /dev/null
 
+set cursorline
+
 " Remap to also look for {}s not in the first column
 :map [[ ?{w99[{
 :map ][ /}b99]}
 :map ]] j0[[%/{
 :map [] k$][%?}
-
-if &diff
-    set t_Co=256
-    set background=dark
-    colorscheme peaksea
-else
-    colorscheme default
-endif
 
 :nmap <Leader>l :setlocal number!<CR>
 :nmap <Leader>o :set paste!<CR>
