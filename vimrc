@@ -1,18 +1,59 @@
-" An example for a vimrc file.
-"
-" Maintainer:   Bram Moolenaar <Bram@vim.org>
-" Last change:  2002 Sep 19
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"             for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"           for OpenVMS:  sys$login:.vimrc
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" When started as "evim", evim.vim will already have done these settings.
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" alternatively, pass a path where Vundle should install plugins
+"let path = '~/some/path/here'
+"call vundle#rc(path)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between here and filetype plugin indent on.
+" scripts on GitHub repos
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'rking/ag.vim'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/powerline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'ap/vim-css-color'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-sleuth'
+Plugin 'jnurmine/Zenburn'
+
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" scripts from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+"Plugin 'FuzzyFinder'
+" scripts not on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" ...
+
+filetype plugin indent on     " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
-" Note the required backslash.
-execute pathogen#infect()
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Plugin commands are not allowed.
+" Put your stuff after this line
 
 " Assume we can support 256 colors
 set t_Co=256
@@ -34,32 +75,17 @@ set timeoutlen=250
 
 set ignorecase
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-if has("vms")
-  set nobackup          " do not keep a backup file, use versions instead
-else
-  set nobackup            " keep a backup file
-endif
+set nobackup
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
 set incsearch           " do incremental searching
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" This is an alternative that also works in block mode, but the deleted
-" text is lost and it only works for putting the current register.
-"vnoremap p "_dp
+set cursorline
+set number
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -68,6 +94,7 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+set autoindent
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -93,11 +120,6 @@ if has("autocmd")
     \ endif
 
   augroup END
-
-else
-
-  set autoindent                " always set autoindenting on
-
 endif " has("autocmd")
 
 fu! DoRunPyBuffer()
@@ -117,8 +139,6 @@ command! RunPyBuffer call DoRunPyBuffer()
 map <Leader>p :RunPyBuffer<CR>
 
 cmap WW w !sudo tee % > /dev/null
-
-set cursorline
 
 " Remap to also look for {}s not in the first column
 :map [[ ?{w99[{
