@@ -12,9 +12,11 @@
 " When started as "evim", evim.vim will already have done these settings.
 "
 " Note the required backslash.
+execute pathogen#infect()
 
 " Assume we can support 256 colors
 set t_Co=256
+:let g:zenburn_high_Contrast=1
 :colorscheme zenburn
 
 let mapleader = "\<space>"
@@ -22,8 +24,6 @@ let mapleader = "\<space>"
 if v:progname =~? "evim"
   finish
 endif
-
-execute pathogen#infect()
 
 set expandtab
 set softtabstop=4
