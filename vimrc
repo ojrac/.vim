@@ -200,3 +200,7 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" easymotion
+map t <Plug>(easymotion-s2)
+let g:EasyMotion_smartcase = 1
