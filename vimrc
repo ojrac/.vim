@@ -173,9 +173,6 @@ cmap WW w !sudo tee % > /dev/null
 
 " Hotkeys for switching buffers
 :nmap <C-q> :e#<CR>     " Last open buffer
-:nmap <C-n> :bnext<CR>
-:nmap <C-p> :bprev<CR>
-
 " Ctrl-P
 :nmap <CR> :CtrlPBuffer<CR>
 :nmap <Leader>e :CtrlP<CR>
@@ -204,3 +201,8 @@ map <C-l> <C-w>l
 " easymotion
 map t <Plug>(easymotion-s2)
 let g:EasyMotion_smartcase = 1
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_python_checkers = ['pep8', 'pylint']
+let g:syntastic_python_pylint_args = "--rcfile=pylintrc"
