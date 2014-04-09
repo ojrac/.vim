@@ -15,6 +15,7 @@ Plugin 'gmarik/vundle'
 " The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
 " scripts on GitHub repos
+Plugin 'jnurmine/Zenburn'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'rking/ag.vim'
 Plugin 'Lokaltog/vim-easymotion'
@@ -27,7 +28,7 @@ Plugin 'ap/vim-css-color'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sleuth'
-Plugin 'jnurmine/Zenburn'
+Plugin 'jceb/vim-orgmode'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
