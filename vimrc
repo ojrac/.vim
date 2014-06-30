@@ -30,6 +30,10 @@ Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sleuth'
 Plugin 'jceb/vim-orgmode'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'hut8labs/diffscuss', {'rtp': 'diffscuss.vim/'}
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'mileszs/ack.vim'
+Plugin 'ervandew/supertab'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -208,3 +212,7 @@ let g:EasyMotion_smartcase = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_python_checkers = ['pep8', 'pylint']
 let g:syntastic_python_pylint_args = "--rcfile=pylintrc"
+
+" Powerline
+let g:Powerline_symbols = 'unicode'
+set laststatus=2
