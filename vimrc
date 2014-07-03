@@ -33,7 +33,6 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'hut8labs/diffscuss', {'rtp': 'diffscuss.vim/'}
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'mileszs/ack.vim'
-Plugin 'ervandew/supertab'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
