@@ -31,6 +31,10 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'hut8labs/diffscuss', {'rtp': 'diffscuss.vim/'}
 Plugin 'mileszs/ack.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'kana/vim-metarw'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/vim-metarw-gdrive'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -352,3 +356,5 @@ au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go set tabstop=4
+
+map <Leader>r :TagbarToggle<CR>
