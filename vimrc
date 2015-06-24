@@ -336,6 +336,8 @@ augroup END
 
 
 " vim-go
+let g:go_fmt_command = "goimports"
+
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 
