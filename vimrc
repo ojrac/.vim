@@ -181,6 +181,7 @@ cmap WW w !sudo tee % > /dev/null
 " Hotkeys for switching buffers
 :nmap <C-q> :e#<CR>     " Last open buffer
 " Ctrl-P
+
 :nmap <CR> :CtrlPBuffer<CR>
 :nmap <Leader>e :CtrlP<CR>
 
@@ -188,7 +189,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
-set wildignore=*.swp,*.pyc
+set wildignore=+=*.swp,*.pyc,*/vendor/*
+let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
 set noerrorbells
