@@ -1,6 +1,11 @@
+" vim:foldmethod=marker:foldlevel=0
+
+" Section Header {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
+" }}} /Header
 
+" Section Vundle Plugins {{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -10,7 +15,6 @@ call vundle#rc()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
-
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
@@ -35,6 +39,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'kana/vim-metarw'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/vim-metarw-gdrive'
+Plugin 'sjl/gundo.vim'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -49,29 +54,18 @@ Plugin 'mattn/vim-metarw-gdrive'
 " ...
 
 filetype plugin indent on     " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Plugin commands are not allowed.
-" Put your stuff after this line
+" }}} /Vundle
 
-" Assume we can support 256 colors
+" Section Colors {{{
+syntax on
+
 set t_Co=256
 :let g:zenburn_high_Contrast=1
 :colorscheme zenburn
 
-let mapleader = "\<space>"
+" }}} /Colors
 
-if v:progname =~? "evim"
-  finish
-endif
+set wildmenu
 
 set expandtab
 set softtabstop=4
@@ -80,7 +74,10 @@ set shiftwidth=4
 
 set timeoutlen=250
 
-set ignorecase
+" Instead of using mapleader, this lets me map double-spacebar
+" let mapleader = "\<space>"
+map <space> <leader>
+set lazyredraw
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -88,31 +85,20 @@ set backspace=indent,eol,start
 set nobackup
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
-set showcmd             " display incomplete commands
-set incsearch           " do incremental searching
-
-set cursorline
 set number
+set showcmd             " display incomplete commands
+set showmatch
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
+set incsearch           " do incremental searching
+set hlsearch
+
+set ignorecase
+set cursorline
 
 set autoindent
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+filetype plugin indent on
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
+augroup vimrcEx
   au!
 
   " For all text files set 'textwidth' to 78 characters.
@@ -126,8 +112,7 @@ if has("autocmd")
     \   exe "normal g`\"" |
     \ endif
 
-  augroup END
-endif " has("autocmd")
+augroup END
 
 fu! DoRunPyBuffer()
     pclose! " force preview window closed
@@ -180,6 +165,7 @@ cmap WW w !sudo tee % > /dev/null
 
 " Hotkeys for switching buffers
 :nmap <C-q> :e#<CR>     " Last open buffer
+
 " Ctrl-P
 
 :nmap <CR> :CtrlPBuffer<CR>
@@ -188,12 +174,20 @@ cmap WW w !sudo tee % > /dev/null
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 set wildignore=+=*.swp,*.pyc,*/vendor/*
 let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
 set noerrorbells
+
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
+nmap <space><space> za
 
 " Don't require Shift when pressing :
 nnoremap ; :
@@ -361,4 +355,27 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 au FileType go set tabstop=4
 
+" My work terminal is weirdly slow
+set nottyfast
+
 map <Leader>r :TagbarToggle<CR>
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+nnoremap Q qa
+nnoremap @ @a
+
+nnoremap <leader>u :GundoToggle<CR>
+
+" Save session
+nnoremap <leader>s :mksession<CR>
+
+" Silver Searcher (with intentional space at eol, for easy typing)
+nnoremap <leader>a :Ag 
+
