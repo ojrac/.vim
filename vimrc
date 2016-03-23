@@ -174,9 +174,9 @@ cmap WW w !sudo tee % > /dev/null
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor -g ""'
 
-set wildignore=+=*.swp,*.pyc,*/vendor/*
+set wildignore+=*.swp,*.pyc,*/vendor/*,vendor/*
 let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
