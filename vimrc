@@ -80,7 +80,6 @@ set backspace=indent,eol,start
 set nobackup
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
-set number
 set showcmd             " display incomplete commands
 set showmatch
 
@@ -92,6 +91,9 @@ set cursorline
 
 set autoindent
 filetype plugin indent on
+
+set number
+set relativenumber
 
 augroup vimrcEx
   au!
