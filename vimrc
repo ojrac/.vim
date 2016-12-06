@@ -176,7 +176,7 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor --ignore .sw[op] --ignore .pyc -g ""'
 
-set wildignore+=*.swp,*.pyc,*/vendor/*,vendor/*
+set wildignore+=*.swp,*.pyc,*/vendor/*,*/game_data/*,*/game_data_live/*
 let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
