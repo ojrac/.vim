@@ -7,7 +7,7 @@ filetype off                  " required
 
 " Section Vundle Plugins {{{
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "let path = '~/some/path/here'
@@ -32,9 +32,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-sleuth'
 Plugin 'jceb/vim-orgmode'
-Plugin 'hut8labs/diffscuss', {'rtp': 'diffscuss.vim/'}
 Plugin 'majutsushi/tagbar'
 Plugin 'sjl/gundo.vim'
+Plugin 'tomtom/tcomment_vim'      " comment lines with gc
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -151,6 +151,9 @@ cmap WW w !sudo tee % > /dev/null
 :cnoremap <Esc>d <S-right><Delete>
 :cnoremap <C-g>  <C-c>
 
+" af hits entire file -- e.g. yaf
+:onoremap af :<C-u>normal! ggVG<CR>
+
 " Smart searching
 :set incsearch
 :set ignorecase
@@ -171,7 +174,7 @@ cmap WW w !sudo tee % > /dev/null
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor -g ""'
+"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor --ignore .sw[op] --ignore .pyc -g ""'
 
 set wildignore+=*.swp,*.pyc,*/vendor/*,vendor/*
 let g:NERDTreeIgnore=['vendor']
@@ -357,9 +360,9 @@ set nottyfast
 
 map <Leader>r :TagbarToggle<CR>
 
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
+" move vertically by visual line UNLESS you're using with a count
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " move to beginning/end of line
 nnoremap B ^
