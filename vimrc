@@ -1,4 +1,4 @@
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevel=0:encoding=utf8
 
 " Section Header {{{
 set nocompatible              " be iMproved, required
@@ -35,6 +35,7 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'majutsushi/tagbar'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomtom/tcomment_vim'      " comment lines with gc
+Plugin 'vim-scripts/dbext.vim'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -77,7 +78,6 @@ set lazyredraw
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set nobackup
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set showcmd             " display incomplete commands
@@ -90,7 +90,6 @@ set ignorecase
 set cursorline
 
 set autoindent
-filetype plugin indent on
 
 set number
 set relativenumber
@@ -135,7 +134,7 @@ cmap WW w !sudo tee % > /dev/null
 :map ]] j0[[%/{
 :map [] k$][%?}
 
-:nmap <Leader>l :setlocal number!<CR>
+:nmap <Leader>n :setlocal number!<CR>:setlocal relativenumber!<CR>
 :nmap <Leader>o :set paste!<CR>
 
 " More familiar movement keys
@@ -150,6 +149,9 @@ cmap WW w !sudo tee % > /dev/null
 :cnoremap <Esc>f <S-Right>
 :cnoremap <Esc>d <S-right><Delete>
 :cnoremap <C-g>  <C-c>
+
+" Change SQL ftplugin prefix key from C-c (which I use a lot)
+let g:ftplugin_sql_omni_key = '<C-j>'
 
 " af hits entire file -- e.g. yaf
 :onoremap af :<C-u>normal! ggVG<CR>
@@ -176,11 +178,12 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor --ignore .sw[op] --ignore .pyc -g ""'
 
-set wildignore+=*.swp,*.pyc,*/vendor/*,*/game_data/*,*/game_data_live/*,*/google.golang.org/*,*/gopkg.in/*,*/github.com/lib/*,*/github.com/pkg/*,*/golang.org/*,*/github.com/aws/*,*/github.com/*
+set wildignore+=*.swp,*.pyc,*/vendor/*,*/game_data/*,*/game_data_live/*,*/google.golang.org/*,*/gopkg.in/*,*/github.com/lib/*,*/github.com/pkg/*,*/golang.org/*,*/github.com/aws/*,*/github.com/*,*.a,*~
 let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
 set noerrorbells
+set belloff=all
 
 set foldenable
 set foldlevelstart=10
@@ -202,7 +205,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " easymotion
-map t <Plug>(easymotion-s2)
+map t <Plug>(easymotion-s)
 let g:EasyMotion_smartcase = 1
 
 " Syntastic
@@ -368,9 +371,6 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap B ^
 nnoremap E $
 
-nnoremap Q qa
-nnoremap @ @a
-
 nnoremap <leader>u :GundoToggle<CR>
 
 " Save session
@@ -379,3 +379,5 @@ nnoremap <leader>s :mksession<CR>
 " Silver Searcher (with intentional space at eol, for easy typing)
 nnoremap <leader>a :Ag 
 
+
+let g:NERDTreeDirArrows=0
