@@ -163,7 +163,19 @@ let g:ftplugin_sql_omni_key = '<C-j>'
 :set hlsearch
 :nmap <Leader>q :nohlsearch<CR>
 
+""""" NERDTree
+
+" Open (no context)
 :nmap <Leader>w :NERDTreeToggle<CR>
+" Open (current file)
+:nmap <Leader>f :NERDTreeFind<CR>
+
+" Close when you open a file
+let NERDTreeQuitOnOpen = 1
+" Disable help prompt
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeIgnore=['vendor']
 
 " Hotkeys for switching buffers
 :nmap <C-q> :e#<CR>     " Last open buffer
@@ -179,7 +191,6 @@ let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignoredir=vendor --ignore .sw[op] --ignore .pyc -g ""'
 
 set wildignore+=*.swp,*.pyc,*/vendor/*,*/game_data/*,*/game_data_live/*,*/google.golang.org/*,*/gopkg.in/*,*/github.com/lib/*,*/github.com/pkg/*,*/golang.org/*,*/github.com/aws/*,*/github.com/*,*.a,*~
-let g:NERDTreeIgnore=['vendor']
 set title
 set nobackup
 set noerrorbells
@@ -379,5 +390,3 @@ nnoremap <leader>s :mksession<CR>
 " Silver Searcher (with intentional space at eol, for easy typing)
 nnoremap <leader>a :Ag 
 
-
-let g:NERDTreeDirArrows=0
