@@ -36,6 +36,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'sjl/gundo.vim'
 Plugin 'tomtom/tcomment_vim'      " comment lines with gc
 Plugin 'vim-scripts/dbext.vim'
+Plugin 'luochen1990/rainbow'
 
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -58,6 +59,8 @@ syntax on
 set t_Co=256
 :let g:zenburn_high_Contrast=1
 :colorscheme zenburn
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " }}} /Colors
 
