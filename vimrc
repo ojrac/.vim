@@ -1,4 +1,4 @@
-" vim:foldmethod=marker:foldlevel=0:encoding=utf8
+" vim:foldmethod=marker:foldlevel=0
 
 " Section Header {{{
 set nocompatible              " be iMproved, required
@@ -56,7 +56,12 @@ filetype plugin indent on     " required
 " Section Colors {{{
 syntax on
 
-set t_Co=256
+" set Vim-specific sequences for RGB colors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+":set termguicolors
+:set t_Co=256
 :let g:zenburn_high_Contrast=1
 :colorscheme zenburn
 
